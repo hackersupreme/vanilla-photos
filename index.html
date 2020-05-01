@@ -17,6 +17,28 @@
 		background: rgb(245,245,245);
 	}
 
+
+	/* Typography */
+
+	h1,
+	h3, 
+	h4,
+	a {
+		margin: 8px;
+		font-size: 0.75em;
+	}
+
+	h3 {
+		margin: 0 0 32px 0;
+	}
+
+	h4 {
+		text-align: right;
+	}
+
+
+	/* Alignment & Positioning */
+
 	body {
 		display: flex;
 		flex-direction: column;
@@ -24,55 +46,29 @@
 	}
 
 	header {
-		display: grid;
-		grid-template-columns: 33.33% 33.33% 33.33%;
-		grid-template-rows: 50% 50%;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
 		position: fixed;
 		width: 100%;
-		height: 100vh;
 		margin: 0;
 		z-index: 10;
 	}
 
-
-	h1 {
-		margin: 8px;
-		font-size: 0.75em;
-	}
-
-	h4 {
-		margin: 8px;
-		text-align: right;
-		font-size: 0.75em;
-	}
-
-	a {
-		font-size: 0.75em;
-		margin: 8px;
+	nav {
 		display: flex;
+		flex-direction: column;
 		align-items: flex-end;
 		justify-content: flex-end;
-	}
-
-
-	aside {
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: flex-start;
-		margin: 8px;
-	}
-
+	}	
 
 	main {
 		margin-top: 64px;
-		display: grid;
+		display: flex;
 		position: relative;
 		width: 75%;
-		grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-		grid-row-gap: 64px;
+		flex-direction: column;
 	}
-
 
 	article {
 		display: flex;
@@ -80,24 +76,16 @@
 		align-items: flex-end;
 		position: relative;
 		margin: 0px;
+		width: 100%;
 	}
 
 	.article-type-1 {
-		grid-column: 1 / span 16;
 		flex-direction: row;
 
 	}
 
-	.article-type-1 > img {
-	}
-
 	.article-type-2 {
-		grid-column: 1 /  span 16;
 		flex-direction: row-reverse;
-		
-	}
-
-	.article-type-2 > img {
 	}
 
 	img {
@@ -107,19 +95,6 @@
 		border-bottom: 1px solid rgb(230,230,230);
 	}
 
-	h2, h3 {
-		margin: 0;
-	}
-
-	h2 {
-	}
-
-	h3 {
-		margin-bottom: 32px;
-		font-size: 0.75em;
-	}
-
-
 	footer {
 		display: flex;
 		flex-direction: column;
@@ -128,14 +103,25 @@
 		margin: 64px;
 	}
 
-	footer > a {
+
+	/* Mobile Display */
+
+	.mobile-display-only {
 		display: none;
+	}
+
+	.desktop-display-only {
+		display: block;
 	}
 
 	@media screen and (max-width: 1000px) {
 
-		main {
-			grid-row-gap: 32px;
+		.mobile-display-only {
+			display: block;
+		}
+
+		.desktop-display-only {
+			display: none;
 		}
 
 		img {
@@ -143,29 +129,9 @@
 			width: 100%;
 		}
 
-		article > h3 {
-			display: none;
-		}
-
-		h3 {
-			padding: 8px;
-		}
-
 		header {
 			position: absolute;
 			top: 0;
-		}
-
-		nav > a {
-			display: none;
-		}
-
-		footer > a {
-			display: block;
-		}
-
-		aside > svg {
-			display: none;
 		}
 
 	}
@@ -179,10 +145,7 @@
 		<br />
 		by Hacker Supreme
 	</h1>
-		<aside>
-
-	</aside>
-	<nav>
+	<nav class="desktop-display-only">
 		<h4>
 			all photos 
 			<br />
@@ -202,10 +165,10 @@
 </main>
 
 <footer>
-	<a href="https:/instagram.com/jeffgsch" target="_blank">
+	<a class="mobile-display-only" href="https:/instagram.com/jeffgsch" target="_blank">
 		insta
 	</a>
-	<a href="http://hackersupreme.com" target="_blank">
+	<a class="mobile-display-only" href="http://hackersupreme.com" target="_blank">
 		hackersupreme.com
 	</a>
 	<h4>copyright hackersupreme 2020 (c)</h4>
@@ -213,17 +176,11 @@
 
 <script>
 
-
 	let displayPics = (data) => {
 
 		let photos = data.photos;
 
-		photos = shuffle(photos);
-
 		let main = document.querySelector('main');
-		let aside = document.querySelector('aside');
-
-		offset_array = [];
 
 		for(var i = 0; i < photos.length; i++) {
 
@@ -231,93 +188,17 @@
 
 			main.appendChild(article);
 
-			let article_indicator = createArticleIndicator(i, article.offsetTop);
-
-			offset_array.push(article.offsetTop);
-
-			aside.appendChild(article_indicator);
-
 		}
-
-		window.addEventListener('scroll', function() {
-
-
-			for (var i = 0; i < offset_array.length; i++) {
-
-				let circle = document.querySelector('.circle-' + i);
-
-				if (window.pageYOffset > offset_array[i] && window.pageYOffset < offset_array[i + 1] && i + 1 != offset_array.length) {
-
-					circle.setAttribute('fill', 'rgb(200,200,200)');
-
-				} else {
-
-					circle.setAttribute('fill', 'rgb(245,245,245)')
-
-				}
-
-				if (window.pageYOffset > offset_array[i] && i == offset_array.length - 1) {
-
-					circle.setAttribute('fill', 'rgb(200,200,200)')
-
-				}
-
-				if (window.pageYOffset == 0 && i == 0) {
-
-					circle.setAttribute('fill', 'rgb(200,200,200)')
-
-				}
-
-			}
-
-		})
-
-	}
-
-	let createArticleIndicator = (i, offset) => {
-
-		let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-
-		svg.setAttribute("width", '16');
-		svg.setAttribute("height", '16');
-
-		let circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-
-
-		circle.setAttribute('cx', '8');
-		circle.setAttribute('cy', '8');
-		circle.setAttribute('r', '4');
-		circle.setAttribute('stroke', 'rgb(200,200,200)');
-		circle.setAttribute('stroke-width', '1');
-		if (i == 0) {
-			circle.setAttribute('fill', 'rgb(200,200,200)');
-		} else {
-			circle.setAttribute('fill', 'rgb(245,245,245)');
-		}
-		
-		circle.classList.add('circle-' + i);
-		svg.appendChild(circle);
-
-		return svg;
-
-	}
-
-	let updateIndicator = (y) => {
 
 	}
 
 	let createArticle = (photo, i) => {
 
 		let article = document.createElement('article');
-
 		let image = getImage(photo.filepath, photo.title);
-
-		let title = getTitle(photo.title);
-
 		let date = getDate(photo.date);
 
 		article.appendChild(image);
-		//article.appendChild(title);
 		article.appendChild(date);
 
 		switch (i % 2) {
@@ -327,8 +208,6 @@
 			case 1:
 				article.className = 'article-type-2';
 				break;
-			default:
-				// do something default;
 		}
 
 		return article;
@@ -342,24 +221,7 @@
 
 		image.alt = alt;
 
-		image.addEventListener('ontouchstart', function() {
-			image.style.width = "100vw";
-		})
-
-		image.addEventListener('ontouchend', function() {
-			image.style.width = "100%";
-		})
-
 		return image;
-	}
-
-	let getTitle = (title, date) => {
-
-		let title_element = document.createElement('h2');
-
-		title_element.innerHTML = title;
-
-		return title_element;
 	}
 
 	let getDate = (date) => {
@@ -368,29 +230,10 @@
 
 		date_element.innerHTML = date;
 
+		date_element.className = "desktop-display-only";
+
 		return date_element;
 	}
-
-
-	function shuffle(array) {
-	  	var currentIndex = array.length, temporaryValue, randomIndex;
-
-	  	// While there remain elements to shuffle...
-	  	while (0 !== currentIndex) {
-
-	    	// Pick a remaining element...
-	    	randomIndex = Math.floor(Math.random() * currentIndex);
-	    	currentIndex -= 1;
-
-	    	// And swap it with the current element.
-	    	temporaryValue = array[currentIndex];
-	    	array[currentIndex] = array[randomIndex];
-	    	array[randomIndex] = temporaryValue;
-	  	}
-
-	  	return array;
-	}
-
 
 	fetch('./data.json', {
 		method: 'GET',
