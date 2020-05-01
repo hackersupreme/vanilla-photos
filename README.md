@@ -35,7 +35,7 @@ The app takes the data and creates the html using a series of functions in vanil
 
 ## Javascript Documentation
 
-**lines 395-408 of index.html**
+**lines 238-251 of index.html**
 ```
 	fetch('./data.json', {
 		method: 'GET',
@@ -63,7 +63,7 @@ You can then chain several functions after the initial fetch that describes what
 
 I then pass the data on to my function `displayPics(data)`, which converts the data into html.
 
-**lines 217-275 of index.html**
+**lines 179-193 of index.html**
 ```
 	let displayPics = (data) => {
 
@@ -85,6 +85,7 @@ I then pass the data on to my function `displayPics(data)`, which converts the d
 
 The `displayPics` function gets the `<main>` element from the document and adds an `<article>` element to it for each photo. The `<article>` element is created by the `createArticle` function.
 
+**lines 195-214 of index.html**
 ```
 	let createArticle = (photo, i) => {
 
@@ -103,8 +104,6 @@ The `displayPics` function gets the `<main>` element from the document and adds 
 			case 1:
 				article.className = 'article-type-2';
 				break;
-			default:
-				// do something default;
 		}
 
 		return article;
@@ -115,6 +114,7 @@ The `createArticle` function uses the `createElement` method to create an `<arti
 
 The `<article>` element that is created gets a classname of `article-type-1` or `article-type-2` depending on if is index in the photos array is even or odd. Those classes will determine the article's alignement.
 
+**lines 216-236 on index.html**
 ```
 	let getImage = (src, alt) => {
 
