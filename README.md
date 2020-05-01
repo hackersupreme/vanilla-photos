@@ -28,6 +28,8 @@ The data I'm using is simple. It's just an array of image objects that contain t
 }
 ```
 
+The app take the data and creates the html using vanilla javascript.
+
 ## Documentation
 
 ###### Fetch API
