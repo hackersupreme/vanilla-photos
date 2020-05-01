@@ -2,7 +2,8 @@
 
 Contents 
 - Overview
-- Documentation
+- Javascript Documentation
+- CSS Documentation
 - Resources / Contact Info
 
 ## Overview
@@ -32,7 +33,7 @@ The data I'm using is simple. It's just an array of image objects that contain t
 
 The app takes the data and creates the html using a series of functions in vanilla javascript.
 
-## Documentation
+## Javascript Documentation
 
 **lines 395-408 of index.html**
 ```
@@ -132,7 +133,25 @@ The `<article>` element that is created gets a classname of `article-type-1` or 
 
 		date_element.innerHTML = date;
 
+		date_element.className = "desktop-display-only";
+
 		return date_element;
 	}
 ```
+
+## CSS Documentation
+
+Because this app is simple and I don't plan on extending it beyond what it is, the CSS is also simple and relies on element style declarations instead of class names, ids, or any other attributes. 
+
+This has two benefits: it's easier and more semantic to read imo and it's perfect for a lazy developer.
+
+I use `flexbox` to lay out this app. Learning how to use `flex` is a game changer for CSS and practically makes your positioning problems disappear. Check out the [documentation](https://www.w3schools.com/css/css3_flexbox.asp) to learn how to use it.
+
+This approach also has many downsides if you tried this style within a team setting or on a more complicated app or website where the styles would need to scale.
+
+CSS naming conventions are really interesting to me, especially as a freelancer who hasn't had to work with other developers, just designers. If you're in the same boat, check out this [article](https://css-tricks.com/bem-101/) on a popular naming convention to get yourself thinking about CSS in a scalable way. 
+
+## Resources / Contact Info
+
+
 
