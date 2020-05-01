@@ -153,5 +153,18 @@ CSS naming conventions are really interesting to me, especially as a freelancer 
 
 ## Resources / Contact Info
 
+###### Email
 
+jeffgsch@gmail.com
+
+###### Website
+
+http://hackersupreme.com
+
+###### Resources
+
+- [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API)
+- [.json() method](https://developer.mozilla.org/en-US/docs/Web/API/Body/json)
+- [Javascript & the DOM](https://www.w3schools.com/js/js_htmldom.asp)
+- [CSS BEM 101](https://css-tricks.com/bem-101/)
 
